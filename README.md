@@ -1,2 +1,2 @@
 # pihole-docker-monitor
-An dockerized pihole and monitored all together for easier installation and maintenance
+An dockerized pihole and monitors all together for easier installation and maintenance
