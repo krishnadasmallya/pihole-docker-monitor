@@ -40,7 +40,7 @@ services:
       volumes:
         - '/opt/prometheus:/etc/prometheus'
 
-   portainer-ce:
+    portainer-ce:
      container_name: Portainer
      image: 'portainer/portainer-ce:linux-arm'
      ports:
@@ -48,7 +48,7 @@ services:
      restart: always
      volumes:
        - '/var/run/docker.sock:/var/run/docker.sock'
-       - 'portainer_data:/data'
+       - '/opt/portainer_data:/data/'
 
     pihole-exporter:
       container_name: PiHole-Exporter

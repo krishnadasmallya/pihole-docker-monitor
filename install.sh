@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e -x
 
-sudo apt update && sudo apt upgrade
-sudo apt install docker docker-compose  # portainer
-workdir=/opt/pihole
-sudo cp -r pihole/grafana /opt/
-sudo cp -r pihole/prometheus /opt/
+workdir=/tmp/work/pihole_monitor
+
+mkdir -p $workdir/
+
+sudo cp -r grafana /opt/
+sudo cp -r prometheus /opt/
 sudo cp -r node_exporter.service $workdir/
 sudo cp -r docker-compose.yml $workdir/
 

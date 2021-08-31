@@ -4,6 +4,9 @@ An dockerized pihole and monitors all together for easier installation and maint
 
 Use default images and quick configuration for Pihole, Prometheus exporter, grafana dashboards
 
+### Prerequisite
+  * Docker &  Docker-Compose
+  
 ### Installation
   * Download the latest release zip
   * Unzip the contents and change directory
