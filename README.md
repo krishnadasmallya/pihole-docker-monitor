@@ -2,12 +2,12 @@
 
 An dockerized pihole and monitors all together for easier installation and maintenance
 
-Use default images and quick configuration for Pihole, Prometheus exporter, grafana dashboards
+Using default images and quick configuration for Pihole, node exporter, speeedtest, Prometheus exporter, grafana dashboards
 
 ### Prerequisite
   * Docker &  Docker-Compose
-  
+
 ### Installation
   * Download the latest release zip
-  * Unzip the contents and change directory
-  * execute "sh install.sh" from the directory on your pi
+  * Unzip the contents and change directory to "pihole"
+  * execute "./install.sh" from the directory on your pi
