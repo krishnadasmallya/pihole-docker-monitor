@@ -4,8 +4,8 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-User=pi
-ExecStart=/opt/node_exporter/node_exporter
+User=REPLACE_USER
+ExecStart=REPLACE_INSTALLDIR/node_exporter/node_exporter
 
 [Install]
 WantedBy=default.target

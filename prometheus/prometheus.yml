@@ -18,9 +18,18 @@ scrape_configs:
     # scheme defaults to 'http'.
     static_configs:
     - targets: ['127.0.0.1:9090']
-    - targets: ['${IP_Addr}:9100']
+    - targets: ['REPLACE_IPADDR:9100']
 
 # Monitoring Pi-Hole
   - job_name: 'Pihole'
     static_configs:
-      - targets: ['${IP_Addr}:9617']
+      - targets: ['REPLACE_IPADDR:9617']
+
+# Monitoring SpeedTest results
+  - job_name: 'speedtest'
+    metrics_path: /probe
+    scrape_timeout: 2m
+    scrape_interval: 30m
+    static_configs:
+      - targets:
+        - REPLACE_IPADDR:9516

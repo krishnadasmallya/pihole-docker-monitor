@@ -10,13 +10,13 @@ services:
         - '80:80/tcp'
       environment:
         - TZ=Australia/Sydney
-        - WEBPASSWORD=pih00le@dmin
+        - WEBPASSWORD=REPLACE_PASSWD
         - VIRTUAL_HOST=pi.hole
         - PROXY_LOCATION=pi.hole
         - ServerIP=127.0.0.1
       volumes:
-        - '/opt/pihole/pihole/:/etc/pihole/'
-        - '/opt/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
+        - 'REPLACE_INSTALLDIR/pihole/pihole/:/etc/pihole/'
+        - 'REPLACE_INSTALLDIR/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
       dns:
         - 127.0.0.1
         - 1.1.1.1
@@ -27,9 +27,14 @@ services:
       restart: unless-stopped
       ports:
         - '3000:3000/tcp'
+      depends_on:
+        - "prometheus"
       environment:
         - 'GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-clock-panel,grafana-simple-json-datasource'
-        - 'GF_SECURITY_ADMIN_PASSWORD=GF@admin'
+        - 'GF_SECURITY_ADMIN_PASSWORD=REPLACE_PASSWD'
+      volumes:
+        - 'REPLACE_INSTALLDIR/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources'
+        - 'REPLACE_INSTALLDIR/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards'
 
     prometheus:
       container_name: Prometheus
@@ -37,18 +42,21 @@ services:
       restart: unless-stopped
       ports:
         - '9090:9090/tcp'
+      depends_on:
+        - "pihole-exporter"
+        - "speedtest"
       volumes:
-        - '/opt/prometheus:/etc/prometheus'
+        - 'REPLACE_INSTALLDIR/prometheus:/etc/prometheus'
 
     portainer-ce:
      container_name: Portainer
-     image: 'portainer/portainer-ce:linux-arm'
+     image: 'portainer/portainer-ce:latest'
      ports:
        - '9000:9000/tcp'
      restart: always
      volumes:
        - '/var/run/docker.sock:/var/run/docker.sock'
-       - '/opt/portainer_data:/data/'
+       - 'REPLACE_INSTALLDIR/portainer_data:/data/'
 
     pihole-exporter:
       container_name: PiHole-Exporter
@@ -56,8 +64,17 @@ services:
       restart: unless-stopped
       ports:
         - '9617:9617/tcp'
+      depends_on:
+        - "pihole"
       environment:
-        - PIHOLE_PASSWORD=pih00le@dmin
+        - PIHOLE_PASSWORD=REPLACE_PASSWD
         - INTERVAL=30s
         - PORT=9617
-        - PIHOLE_HOSTNAME=${IP_Addr}
+        - PIHOLE_HOSTNAME=REPLACE_IPADDR
+
+    speedtest:
+      container_name: speedtest
+      image: 'jraviles/prometheus_speedtest:latest'
+      restart: unless-stopped
+      ports:
+        - '9516:9516/tcp'
