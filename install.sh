@@ -36,7 +36,6 @@ sudo sed -i "s/REPLACE_PASSWD/$password/" $workdir/docker-compose.yml
 sudo sed -i "s|REPLACE_INSTALLDIR|$installdir|" $workdir/docker-compose.yml
 
 ## 4) Install Node Exporter
-Admin!234
 sudo wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-armv7.tar.gz
 sudo tar xfz node_exporter-1.1.2.linux-armv7.tar.gz
 sudo rm node_exporter-1.1.2.linux-armv7.tar.gz
