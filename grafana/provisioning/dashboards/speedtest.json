@@ -21,9 +21,9 @@
   "description": "A dashboard for Prometheus Speedtest Exporter",
   "editable": true,
   "gnetId": 11229,
-  "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1630755994167,
+  "graphTooltip": 2,
+  "id": 6,
+  "iteration": 1630886258161,
   "links": [],
   "panels": [
     {
@@ -40,19 +40,19 @@
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 10,
-            "gradientMode": "none",
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -73,7 +73,27 @@
               },
               {
                 "color": "red",
+                "value": 20
+              },
+              {
+                "color": "#EAB839",
+                "value": 40
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 60
+              },
+              {
+                "color": "#EF843C",
+                "value": 70
+              },
+              {
+                "color": "#E24D42",
                 "value": 80
+              },
+              {
+                "color": "#1F78C1",
+                "value": 100
               }
             ]
           },
@@ -93,11 +113,11 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "pluginVersion": "8.1.2",
@@ -382,7 +402,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Prometheus",
           "value": "Prometheus"
         },

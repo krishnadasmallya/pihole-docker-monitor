@@ -36,7 +36,7 @@ sudo sed -i "s/REPLACE_PASSWD/$password/" $workdir/docker-compose.yml
 sudo sed -i "s|REPLACE_INSTALLDIR|$installdir|" $workdir/docker-compose.yml
 
 ## 4) Install Node Exporter
-
+Admin!234
 sudo wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-armv7.tar.gz
 sudo tar xfz node_exporter-1.1.2.linux-armv7.tar.gz
 sudo rm node_exporter-1.1.2.linux-armv7.tar.gz
@@ -45,8 +45,13 @@ sudo sed -i "s/REPLACE_USER/$USER/" $workdir/node_exporter.service
 sudo sed -i "s|REPLACE_INSTALLDIR|$installdir|" $workdir/node_exporter.service
 sudo mv $workdir/node_exporter.service /etc/systemd/system/node_exporter.service
 
-sudo systemctl start node_exporter
-sudo systemctl enable node_exporter
+if sudo systemctl --all --type service | grep -q "node_exporter"; then
+  sudo systemctl daemon-reload
+  sudo systemctl restart node_exporter
+else
+  sudo systemctl start node_exporter
+  sudo systemctl enable node_exporter
+fi
 
 ## 5) Install services using docker-compose
 
