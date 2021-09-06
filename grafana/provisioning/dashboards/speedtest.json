@@ -22,8 +22,8 @@
   "editable": true,
   "gnetId": 11229,
   "graphTooltip": 2,
-  "id": 6,
-  "iteration": 1630886258161,
+  "id": 4,
+  "iteration": 1630893397268,
   "links": [],
   "panels": [
     {
@@ -109,7 +109,7 @@
       },
       "id": 2,
       "interval": null,
-      "maxDataPoints": null,
+      "maxDataPoints": 16000,
       "options": {
         "legend": {
           "calcs": [],
@@ -137,21 +137,85 @@
           "interval": "",
           "legendFormat": "Upload Speed",
           "refId": "B"
-        },
-        {
-          "exemplar": false,
-          "expr": "ping_ms",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "Ping",
-          "refId": "C"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Speedtest Timeline",
       "type": "timeseries"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "rgb(31, 120, 193)",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 19,
+        "y": 0
+      },
+      "id": 8,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 10000,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "expr": "ping_ms",
+          "legendFormat": "Ping Latency",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Ping Latency",
+      "type": "gauge"
     },
     {
       "cacheTimeout": null,
@@ -214,12 +278,12 @@
         "h": 7,
         "w": 4,
         "x": 19,
-        "y": 0
+        "y": 6
       },
       "id": 6,
       "interval": null,
       "links": [],
-      "maxDataPoints": 1000,
+      "maxDataPoints": 10000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
@@ -286,12 +350,12 @@
         "h": 6,
         "w": 4,
         "x": 19,
-        "y": 7
+        "y": 13
       },
       "id": 7,
       "interval": null,
       "links": [],
-      "maxDataPoints": 1000,
+      "maxDataPoints": 10000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
@@ -320,81 +384,9 @@
       "timeShift": null,
       "title": "Current Upload Speed",
       "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "rgb(31, 120, 193)",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 19,
-        "y": 13
-      },
-      "id": 8,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 1000,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.1.2",
-      "targets": [
-        {
-          "expr": "ping_ms",
-          "legendFormat": "Ping Latency",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Current Ping Latency",
-      "type": "gauge"
     }
   ],
+  "refresh": "30s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
